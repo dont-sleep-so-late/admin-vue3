@@ -1,5 +1,5 @@
 <template>
-    <a-form name="basic" autocomplete class="register-form" @finish="submit()" ref="registerRef" :model="registerParam"
+    <a-form autocomplete class="register-form" @finish="submit()" ref="registerRef" :model="registerParam"
         :rules="registerRules">
         <h1 class="login-title">登录</h1>
         <a-form-item name="username">

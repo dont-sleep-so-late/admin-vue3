@@ -1,14 +1,14 @@
 <template>
-    <a-layout>
-        <a-layout-header :style="headerStyle">
+    <a-layout style="min-height: 100vh">
+        <a-layout-header style='background-color: #fff;'>
             <hedaer />
         </a-layout-header>
         <a-layout>
-            <a-layout-sider :style="siderStyle">
+            <a-layout-sider v-model:collapsed="sys.collapsed" theme="light" :trigger="null" collapsible>
                 <side />
             </a-layout-sider>
-            <a-layout-content :style="contentStyle">
-
+            <a-layout-content>
+                <router-view></router-view>
             </a-layout-content>
         </a-layout>
         <!-- <a-layout-footer :style="footerStyle">
@@ -21,36 +21,11 @@
 import hedaer from '@/components/header.vue'
 import side from '@/components/side.vue'
 
-import type { CSSProperties } from 'vue';
-const headerStyle: CSSProperties = {
-    textAlign: 'center',
-    color: '#fff',
-    height: 64,
-    paddingInline: 50,
-    lineHeight: '64px',
-    backgroundColor: '#7dbcea',
-};
+import useStore from "@/store";
+const { sys } = useStore()
 
-const contentStyle: CSSProperties = {
-    textAlign: 'center',
-    minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#108ee9',
-};
 
-const siderStyle: CSSProperties = {
-    textAlign: 'center',
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#3ba0e9',
-};
 
-const footerStyle: CSSProperties = {
-    textAlign: 'center',
-    color: '#fff',
-    backgroundColor: '#7dbcea',
-};
 </script>
 
 <style lang='scss' scoped></style>

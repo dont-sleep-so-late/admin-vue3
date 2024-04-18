@@ -1,6 +1,5 @@
 <template>
-    <a-form name="basic" autocomplete class="login-form" @finish="submit()" ref="loginRef" :model="loginParam"
-        :rules="loginRules">
+    <a-form autocomplete class="login-form" @finish="submit()" ref="loginRef" :model="loginParam" :rules="loginRules">
         <h1 class="login-title">登录</h1>
         <a-form-item name="username">
             <a-input placeholder="请输入账号" has-feedback v-model:value="loginParam.username" size="large"><template
@@ -26,11 +25,12 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { LoginReq } from '@/types/user';
 import { reactive, ref, toRaw } from 'vue'
 import { Rule } from 'ant-design-vue/es/form';
+import { useRouter } from 'vue-router';
 const loginParam: LoginReq = reactive({
     username: "",
     password: ""
 })
-
+const router = useRouter()
 const loginRef = ref()
 const loginRules: Record<string, Rule[]> = {
     username: [{ required: true, message: "账号不能为空", trigger: 'blur' }],
@@ -41,6 +41,7 @@ const submit = () => {
         .validate()
         .then(() => {
             console.log('values', loginParam, toRaw(loginParam));
+            router.push('/layout')
         })
         .catch((error: any) => {
             console.log('error', error);

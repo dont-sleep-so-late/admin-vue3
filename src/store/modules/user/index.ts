@@ -1,16 +1,20 @@
 import { defineStore } from "pinia";
 
-const useAppStore = defineStore({
-  id: "app",
+const useUserStore = defineStore("user", {
   state: (): any => ({
-    name: localStorage.get("name") || "Small Tools",
+    name: localStorage.getItem("name") || "Small Tools",
+    token: localStorage.getItem("token"),
   }),
   actions: {
     setName(name: string) {
       this.name = name;
-      localStorage.set("name", name);
+      localStorage.setItem("name", name);
+    },
+    setToken(token: string) {
+      this.token = token;
+      localStorage.setItem("token", token);
     },
   },
 });
 
-export default useAppStore;
+export default useUserStore;
